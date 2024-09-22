@@ -37,14 +37,13 @@ group :development do
   # gem 'rack-mini-profiler', '~> 2.0' # not yet packaged for Debian
   gem 'listen', '~> 3.3'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
 end
-gem 'rspec', '~> 3.13'
 
 group :test do
   # Adds support for Capybara system testing and selenium driver
   gem 'capybara', '>= 3.26'
   gem 'selenium-webdriver'
+  gem 'rspec', '~> 3.13'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

@@ -2,26 +2,35 @@ version: '3.9'
 services:
   db:
     image: postgres:13
-    environment:
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: password
+    ports:
+      - "5432:5432"
     volumes:
       - db_data:/var/lib/postgresql/data
 
+  selenium:
+    image: selenium/standalone-chrome:3.141.59
+
   web:
+    tty: true
+    stdin_open: true
     build: .
     command: bash -c "rm -f tmp/pids/server.pid && bundle exec rails s -b '0.0.0.0'"
     volumes:
-      - .:/app
+      - .:/home/app
     ports:
       - "3000:3000"
+      - "43447:43447"
     depends_on:
       - db
+    env_file: .env
     environment:
       DATABASE_HOST: db
       DATABASE_USER: postgres
       DATABASE_PASSWORD: password
-      DATABASE_NAME: postgres
+      CAPYBARA_SERVER_PORT: 43447
+      HOST_DOCKER_DOMAIN: host.docker.internal
+      SELENIUM_REMOTE_HOST: selenium
+      USE_SELENIUM_CONTAINER: 'true'
 
 volumes:
   db_data:

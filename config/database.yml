@@ -1,21 +1,19 @@
+# PostgreSQL. Versions 9.1 and up are supported.
+
 default: &default
   adapter: postgresql
   encoding: unicode
-  host: <%= ENV['DATABASE_HOST'] || 'localhost' %>
-  username: <%= ENV['DATABASE_USER'] || 'postgres' %>
-  password: <%= ENV['DATABASE_PASSWORD'] || '' %>
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  # For details on connection pooling, see rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  pool: <%= ((ENV.fetch("WEB_CONCURRENCY", 1).to_i * ENV.fetch("RAILS_MAX_THREADS", 5).to_i) + ENV.fetch("SIDEKIQ_THREADS", 5).to_i) %>
+  username: <%= ENV["DATABASE_USERNAME"] %>
+  password: <%= ENV["DATABASE_PASSWORD"] %>
+  host: <%= ENV.fetch("DATABASE_HOST", 'localhost') %>
 
 development:
   <<: *default
-  database: <%= ENV['DATABASE_NAME'] || 'postgres' %>
+  database: app_from_tests_development
 
 test:
   <<: *default
-  database: <%= ENV['DATABASE_NAME'] || 'test_postgres' %>
-
-production:
-  <<: *default
-  database: <%= ENV['DATABASE_NAME'] || 'postgres' %>
-  username: postgres
-  password: <%= ENV['DATABASE_PASSWORD'] %>
+  database: app_from_tests__test
