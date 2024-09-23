@@ -1,4 +1,5 @@
 require "application_system_test_case"
+require './test/system/test_helper'
 
 class LivrosTest < ApplicationSystemTestCase
   setup do
