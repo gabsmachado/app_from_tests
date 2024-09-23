@@ -1,13 +1,11 @@
-# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
-
 one:
-  titulo: MyString
-  autor: MyString
-  descricao: MyText
-  publicado_em: 2024-09-22
+  titulo: "Dom Quixote"
+  autor: "Miguel de Cervantes"
+  publicado_em: "1605-01-16"
+  descricao: "Uma sátira aos romances de cavalaria."
 
 two:
-  titulo: MyString
-  autor: MyString
-  descricao: MyText
-  publicado_em: 2024-09-22
+  titulo: "1984"
+  autor: "George Orwell"
+  publicado_em: "1949-06-08"
+  descricao: "Uma distopia sobre o totalitarismo."
