@@ -52,5 +52,4 @@ node_modules
 yarn-debug.log*
 .yarn-integrity
 .nvmrc
-.env
 master.key
