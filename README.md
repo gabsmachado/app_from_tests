@@ -1,25 +1,22 @@
-# README
+# Pré-Requisitos
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+* Docker
+* Docker-compose
+# Rodando Aplicação
 
-Things you may want to cover:
+## Clonando o repositorio
+* Se for usar ssh
+`git clone git@github.com:gabsmachado/app_from_tests.git`
+* Se for usar HTTPS
+`git clone https://github.com/gabsmachado/app_from_tests.git`
 
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-# app_from_tests
+## Executando a Aplicação
+* Dentro da pasta do projeto execute:
+`docker-compse up`
+* No terminal entre dentro do cointaner web:
+ `docker exec -it app_from_tests-web-1 bash`
+* Após acessar o container execute os comandos em sequencia:
+* `bundle exec rake db:create`
+* `bundle exec rake db:migrate`
+* `budle exec rake db:seed`
+* Com esses passos voce ja deve ver a apliação disponivel no seu navegador em `http://localhost:3000/`
